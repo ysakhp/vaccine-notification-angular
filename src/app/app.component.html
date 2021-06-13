@@ -1,0 +1,29 @@
+<!-- <h1 style="text-align: center;">Vaccine Notification </h1>
+
+<form >
+
+<input type="text"  [(ngModel)] = "user.email"> -->
+
+<!-- <input type="number" name="pincode" id="pincode" placeholder="Pincode" [(ngModel)]="user.pincode"> -->
+<!-- <button type="submit" class="btn btn-primary" >Notify</button>
+</form> -->
+
+<div class="container-fluid"  >
+    <h1>Vaccine Availability Notification</h1>
+    <form #userForm="ngForm"  >
+        {{userForm.value | json}}
+        {{userModel | json}}
+        <div class="form-group">
+            <input type="email"  placeholder="email" class="form-control" name="email" [(ngModel)]="userModel.email">
+
+        </div>
+
+        <div class="form-group">
+            <input type="text" placeholder="pincode" class="form-control" name="pincode" [(ngModel)]="userModel.pincode">
+
+        </div>
+        <button class="btn btn-primary" type="button" (click)="registerUser()">Register</button>
+
+    </form>
+
+</div>
