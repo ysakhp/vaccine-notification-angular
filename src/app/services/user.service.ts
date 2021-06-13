@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UserService {
-  readonly APIURL = "http://localhost:8081/api"; 
+  readonly APIURL = "http://www.vaccinationnotification.online:8081/api"; 
 
    constructor(private http:HttpClient) {
 
@@ -17,6 +17,7 @@ export class UserService {
     }
 
    enroll(user:User){
+     console.log('U '+this.APIURL)
      return  this.http.post<any>(this.APIURL + '/users', user)
    }
 
