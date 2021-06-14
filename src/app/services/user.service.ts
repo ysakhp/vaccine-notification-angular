@@ -17,7 +17,7 @@ export class UserService {
     }
 
    enroll(user:User){
-     console.log('U '+this.APIURL)
+     
      return  this.http.post<any>(this.APIURL + '/users', user)
    }
 

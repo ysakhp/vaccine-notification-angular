@@ -1,5 +1,6 @@
 import { HttpClientModule } from '@angular/common/http';
 import { Component } from '@angular/core';
+
 import { User } from './model/user';
 import { UserService } from './services/user.service';
 
@@ -11,6 +12,7 @@ import { UserService } from './services/user.service';
 export class AppComponent {
   title = 'vaccine-notification-angular';
 
+  alert :boolean = false
   userModel = new User()
   
 
@@ -19,10 +21,20 @@ export class AppComponent {
   }
 
   registerUser(){
-    console.log('Sumbitted '+this.userModel.email)
+    // console.log('Submitted');
+    this.alert=true
     this.userService.enroll(this.userModel).subscribe(
-      data => console.log('Success',data),
-      error => console.error('Error',error)
+      data => this.alert =true ,
+      error => this.alert=false
     )
+  }
+
+  closeAlert(){
+    this.alert = false
+  }
+
+  onSubmit(){
+    // console.log('Submitted');
+
   }
 }

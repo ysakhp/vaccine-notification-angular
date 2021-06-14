@@ -1,17 +1,21 @@
-<!-- <h1 style="text-align: center;">Vaccine Notification </h1>
-
-<form >
-
-<input type="text"  [(ngModel)] = "user.email"> -->
-
-<!-- <input type="number" name="pincode" id="pincode" placeholder="Pincode" [(ngModel)]="user.pincode"> -->
-<!-- <button type="submit" class="btn btn-primary" >Notify</button>
-</form> -->
 <div class="container p-3 my-3 border" style="padding-top: 150px;width: 650px; height: 500px;">
     <h1 style="text-align: center;padding-top: 100px;">Vaccine Availability Notification</h1>
+    <!-- <div *ngIf="alert" class="alert alert-success" role="alert">
+        <h4 class="alert-heading">Success!</h4>
+        <p>Registered successfully.</p>
+        <hr>
+        <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
+    </div> -->
+
+    <div *ngIf="alert" class="alert alert-warning alert-dismissible fade show" role="alert" style="text-align: center;">
+        <strong>Success!!</strong> Registered successfully.
+        <button (click)="closeAlert()" type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
     <div class="container-fluid" style="width: 400px;height: 300px; padding-top: 20px;">
 
-        <form #userForm="ngForm">
+        <form #userForm="ngForm" (ngSubmit)="onSubmit();userForm.reset()" novalidate>
             <!-- {{userForm.value | json}}
         {{userModel | json}} -->
             <div class="form-outline mb-4">
@@ -24,13 +28,13 @@
                     [(ngModel)]="userModel.pincode">
 
             </div>
-            <button class="btn btn-primary btn-block" type="button" (click)="registerUser()">Register</button>
+            <button class="btn btn-primary btn-block" type="submit" (click)="registerUser()">Register</button>
 
         </form>
 
     </div>
 
-    
+
 </div>
 <div class="navbar navbar-inverse navbar-fixed-bottom">
           <div class="container">
