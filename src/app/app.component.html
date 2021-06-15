@@ -11,28 +11,39 @@
     <div fxLayout="column" *ngIf="alert" class="alert alert-warning alert-dismissible fade show" role="alert"
         style="text-align: center;width: 300px;align-items: center;">
         <strong style="width: 300px;">Success!!</strong> Registered successfully.
-        <button  (click)="closeAlert()" type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <button (click)="closeAlert()" type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
     <div fxLayout="column" class="container-fluid" style="width: 300px;">
 
-        <form #userForm="ngForm"  (ngSubmit)="onSubmit();userForm.reset()" novalidate>
+        <form #userForm="ngForm" (ngSubmit)="onSubmit();userForm.reset()">
             <!-- {{userForm.value | json}}
         {{userModel | json}} -->
-            <div fxLayoutAlign="center center" class="form-outline mb-4">
-                <input style="width: 280px;" type="email" placeholder="email" class="form-control" name="email"
-                    [(ngModel)]="userModel.email">
-
+            <div *ngIf="email.errors?.required && email.touched ">
+                <small style="color: brown;"  class="help-block">Email required *</small>
+            </div>
+            <div *ngIf="email.errors && email.errors.email">
+                <small style="color: brown;" class="help-block">Email invalid *</small>
             </div>
 
-            <div fxLayoutAlign="center center" class="form-outline mb-4">
-                <input style="width: 280px;" type="text" placeholder="pincode" class="form-control" name="pincode"
-                    [(ngModel)]="userModel.pincode">
+            <div fxLayoutAlign="center center" class="form-group" [class.has-error]="email.touched"
+             [class.has-success]="email.valid" fxLayout="column">
+                <input required email #email="ngModel" style="width: 270px;" type="email" placeholder="email"
+                    class="form-control" name="email" [(ngModel)]="userModel.email">
+            </div>
+
+            <div *ngIf="pincode.invalid && pincode.touched">
+                <small style="color: brown;" class="error">Pincode required *</small>
+            </div>
+
+            <div fxLayoutAlign="center center" class="form-group">
+                <input required #pincode="ngModel" style="width: 270;" type="text" placeholder="pincode"
+                    class="form-control" name="pincode" [(ngModel)]="userModel.pincode">
 
             </div>
-            <div fxLayoutAlign="center center" class="form-outline mb-4">
-                <button style="width: 100px;" class="btn btn-primary btn-block" type="submit"
+            <div fxLayoutAlign="center center">
+                <button [disabled]="userForm.form.invalid" style="width: 100px;" class="btn btn-primary btn-block" type="submit"
                     (click)="registerUser()">Register</button>
             </div>
         </form>
@@ -41,8 +52,10 @@
 </div>
 
 
-<div style="text-align: center;align-items: center;" class="navbar navbar-inverse navbar-fixed-bottom" ftLayout.lt-sm="column">
+<div style="text-align: center;align-items: center;" class="navbar navbar-inverse navbar-fixed-bottom"
+    ftLayout.lt-sm="column">
           <div class="container">
-                <p style="width: 300px;text-align: center;" class="navbar-text">© 2021 by P. Vaisakh<br> Warning: Under testing. </p>
+                <p style="width: 300px;text-align: center;" class="navbar-text">© 2021 by P. Vaisakh<br> Warning: Under
+            testing. </p>
             </div>
 </div>
