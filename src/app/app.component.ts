@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 
 import { User } from './model/user';
 import { UserService } from './services/user.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
@@ -10,14 +11,20 @@ import { UserService } from './services/user.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'vaccine-notification-angular';
+  title = 'vaccine-notification';
 
   alert :boolean = false
   userModel = new User()
   
 
-  constructor(private userService: UserService ,http :HttpClientModule){
+  constructor(private userService: UserService ,http :HttpClientModule, private titleService: Title){
+    this.setTitle()
       
+  }
+
+  public setTitle(){
+    this.titleService.setTitle(this.title)
+
   }
 
   registerUser(){
