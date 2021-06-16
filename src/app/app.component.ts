@@ -29,7 +29,7 @@ export class AppComponent {
 
   registerUser(){
     // console.log('Submitted');
-    this.alert=true
+    // this.alert=true
     this.userService.enroll(this.userModel).subscribe(
       data => this.alert =true ,
       error => this.alert=false

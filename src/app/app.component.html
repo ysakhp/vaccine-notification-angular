@@ -42,6 +42,19 @@
                     class="form-control" name="pincode" [(ngModel)]="userModel.pincode">
 
             </div>
+
+            <div *ngIf="ageGroup.invalid && ageGroup.touched">
+                <small style="color: brown;" class="error">Age Group required *</small>
+            </div>
+            <div  class="form-group">
+                <select required class="custom-select" name="ageGroup" #ageGroup="ngModel" [(ngModel)]="userModel.ageGroup" >
+                    <option value="ALL">All Age</option>
+                    <option value="18">18+</option>
+                    <option value="40">40-44</option>
+                    <option value="45">45+</option>
+                </select>
+            </div>
+
             <div fxLayoutAlign="center center">
                 <button [disabled]="userForm.form.invalid" style="width: 100px;" class="btn btn-primary btn-block" type="submit"
                     (click)="registerUser()">Register</button>
