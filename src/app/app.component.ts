@@ -11,7 +11,7 @@ import { Title } from '@angular/platform-browser';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'vaccine-notification';
+  title = 'Vaccine notification';
 
   alert :boolean = false
   userModel = new User()
@@ -20,6 +20,10 @@ export class AppComponent {
   constructor(private userService: UserService ,http :HttpClientModule, private titleService: Title){
     this.setTitle()
       
+  }
+
+  ngOnInit(){
+    this.setTitle
   }
 
   public setTitle(){
