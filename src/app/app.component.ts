@@ -34,12 +34,12 @@ export class AppComponent {
   }
 
   registerUser() {
-    console.log('Submitted');
+    // console.log('Submitted');
     // this.alert=true
-    // this.userService.enroll(this.userModel).subscribe(
-    //   data => this.alert =true ,
-    //   error => this.alert=false
-    // )
+    this.userService.enroll(this.userModel).subscribe(
+      data => this.alert = true,
+      error => this.alert = false
+    )
   }
 
   closeAlert() {
